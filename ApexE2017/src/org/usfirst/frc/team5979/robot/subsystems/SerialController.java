@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
  * This subsystem is designed for facilitating serial communications, specificaly for
  * sending diagnostc and logging information to the SF OpenLog via the RS-232 port.
  * 
+ * WARNING: THE RS-232 PORT WILL DESTROY THE OpenLog WITHOUT A MAX3232 TRANSCEIVER OR SIMILAR.
  * @author Liam Williams
  */
 
@@ -37,6 +38,6 @@ public class SerialController extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        serial = new SerialPort(9600, SerialPort.Port.kOnboard);
+        serial = new SerialPort(9600, SerialPort.Port.kMXP);
     }
 }
