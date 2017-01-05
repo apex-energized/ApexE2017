@@ -26,6 +26,15 @@ public class SerialController extends Subsystem {
 		String finalOut = null;
 		serial.writeString("<" + stamp.getTime() + ">" + finalOut);
 	}
+	
+	/**
+	 * Forces the serial buffer to be sent out and resets.
+	 * @author Liam Williams
+	 */
+	public void clear () {
+		serial.flush();
+		serial.reset();
+	}
 
     public void initDefaultCommand() {
         serial = new SerialPort(9600, SerialPort.Port.kOnboard);
