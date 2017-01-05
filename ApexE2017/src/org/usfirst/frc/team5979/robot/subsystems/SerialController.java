@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
 
 /**
  * This subsystem is designed for facilitating serial communications, specificaly for
- * sending diagnostc and logging information to the SF OpenLog via the RS-232 port.
+ * sending diagnostc and logging information to the SF OpenLog via the MXP port.
  * 
  * WARNING: THE RS-232 PORT WILL DESTROY THE OpenLog WITHOUT A MAX3232 TRANSCEIVER OR SIMILAR.
  * @author Liam Williams
@@ -18,8 +18,8 @@ public class SerialController extends Subsystem {
 	private Calendar stamp = Calendar.getInstance();
 	
 	/**
-	 * Sends data out the RS-232 port with a timestamp.
-	 * @param toOut Message to be sent out the RS-232 serial port.
+	 * Sends data out the MXP port with a timestamp.
+	 * @param toOut Message to be sent out the MXP UART.tx serial port.
 	 * @author Liam Williams
 	 */
 	public void send(String toOut) {
@@ -29,10 +29,22 @@ public class SerialController extends Subsystem {
 	}
 	
 	/**
+	 * Read any data being sent to the RoboRIO through the MXP port.
+	 * Primarily for future compatibility.
+	 * @return The data in the recieve bufer.
+	 * @author Liam Williams
+	 */
+	public String recieve() {
+		String toReturn = null;
+		toReturn = serial.readString();
+		return toReturn;
+	}
+	
+	/**
 	 * Forces the serial buffer to be sent out and resets.
 	 * @author Liam Williams
 	 */
-	public void clear () {
+	public void clear() {
 		serial.flush();
 		serial.reset();
 	}
