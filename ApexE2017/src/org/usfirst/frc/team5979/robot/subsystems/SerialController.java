@@ -10,11 +10,31 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
  * Capable of switching between the MXP and RS-232 serial ports on the RoboRIO. 
  * The MXP serial port is default and will be automatically selected upon object creation.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Liam Williams
  */
 
 public class SerialController extends Subsystem {
+	public SerialController() {
+		serialMXP = new SerialPort(9600, SerialPort.Port.kMXP);
+        serialRS = new SerialPort(9600, SerialPort.Port.kOnboard);
+        serial = serialMXP; //Sets the default serial to the MXP port.
+	}
+	/**
+	 * @param port The port to be selected upon creation. "RS-232" or "MXP" accepted.
+	 */
+	public SerialController(String port) {
+		serialMXP = new SerialPort(9600, SerialPort.Port.kMXP);
+        serialRS = new SerialPort(9600, SerialPort.Port.kOnboard);
+        if (port == "RS-232") {
+        	serial = serialRS;
+        } else if (port == "MXP") {
+        	serial = serialMXP;
+        } else {
+        	serial = serialMXP;
+        }
+	}
+	
 	private SerialPort serialMXP, serialRS, serial;
 	private Calendar stamp = Calendar.getInstance();
 	
@@ -99,8 +119,5 @@ public class SerialController extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        serialMXP = new SerialPort(9600, SerialPort.Port.kMXP);
-        serialRS = new SerialPort(9600, SerialPort.Port.kOnboard);
-        serial = serialMXP; //Sets the default serial to the MXP port.
     }
 }
