@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5979.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5979.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5979.robot.subsystems.SerialController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -20,7 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public SerialController log = new SerialController();
 
