@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Supports tankDrive (declared with DriveTrain.tankDrive()) when creating the object.
  * Work in Progress.
  * 
- * @version 0.2
+ * @version 0.2.1
  * @author Liam Williams
  */
 public class DriveTrain {
-	
+	private SerialController log = new SerialController("MXP");
 	/**
 	 * Inner class handling tank-style drive specific functions.
 	 */
@@ -26,7 +26,7 @@ public class DriveTrain {
 		 */
 		public tankDrive(int motorL, int motorR) {
 			tankDrive = new RobotDrive(motorL, motorR);
-			//TODO add log information
+			log.send("Two-motor tank drive initialized.");
 		}
 		
 		/**
@@ -38,7 +38,7 @@ public class DriveTrain {
 		 */
 		public tankDrive(int motorFL, int motorBL, int motorFR, int motorBR) {
 			tankDrive = new RobotDrive(motorFL, motorBL, motorFR, motorBR);
-			//TODO add log information
+			log.send("Four-motor tank drive initialized.");
 		}
 		/**
 		 * Sets the motor speeds according to two values of -1 to 1 with 0 as a neutral point.]
@@ -59,11 +59,12 @@ public class DriveTrain {
 			long clock = System.currentTimeMillis(), 
 					duration = (System.currentTimeMillis()) + Long.valueOf(8000);
 			
-			//TODO add log information
+			log.send("Automatic drive sequence started for " + time + " milliseconds.");
 			while(clock < duration) {
 				tankDrive.drive(speed, turnRate);
 				clock = System.currentTimeMillis();
 			}
+			log.send("Automatic drive sequence time expired.");
 		}
 		public void initDefaultCommand() {}
 	}
@@ -79,7 +80,7 @@ public class DriveTrain {
 		 */
 		public arcadeDrive(int motorL, int motorR) {
 			arcadeDrive = new RobotDrive(motorL, motorR);
-			//TODO add log information
+			log.send("Two-motor arcade drive initialized.");
 		}
 		/**
 		 * Initializes the arcade-style DriveTrain with four motors.
@@ -90,7 +91,7 @@ public class DriveTrain {
 		 */
 		public arcadeDrive(int motorFL, int motorBL, int motorFR, int motorBR) {
 			arcadeDrive = new RobotDrive(motorFL, motorBL, motorFR, motorBR);
-			//TODO add log information
+			log.send("Four-motor arcade drive initialized.");
 		}
 		/**
 		 * Sets the motor speeds based on the X and Y values of a single joystick.
@@ -111,11 +112,12 @@ public class DriveTrain {
 			long clock = System.currentTimeMillis(), 
 					duration = (System.currentTimeMillis()) + Long.valueOf(8000);
 			
-			//TODO add log information
+			log.send("Automatic drive sequence started for " + time + " milliseconds.");
 			while(clock < duration) {
 				arcadeDrive.drive(speed, turnRate);
 				clock = System.currentTimeMillis();
 			}
+			log.send("Automatic drive sequence time expired.");
 		}
 		public void initDefaultCommand() {}
 	}
