@@ -6,6 +6,8 @@ import org.usfirst.frc.team5979.robot.commands.ExampleCommand;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
+ * @author Cameron Cunningham
+ *@version 0.0
  */
 public class OI {
     //// CREATING BUTTONS
@@ -38,14 +40,14 @@ public class OI {
 	public OI(){
 		stick = new Joystick(0);
 		
-	
+	// declaration for stick axes
 		double lXAxis,lYAxis,rYAxis,rXAxis;
 	lXAxis = stick.getRawAxis(0);
 	lYAxis = stick.getRawAxis(1);
 	rXAxis = stick.getRawAxis(4);
 	rYAxis = stick.getRawAxis(5);
 	
-	
+	// declaration for buttons
 	boolean aButton;
 		
 	aButton = stick.getRawButton(0);
