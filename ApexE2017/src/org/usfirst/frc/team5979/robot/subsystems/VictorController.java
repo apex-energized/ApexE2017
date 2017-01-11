@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5979.robot.subsystems;
 
-import java.nio.file.ClosedWatchServiceException;
 import java.util.ArrayList;
 import java.util.List;
 import edu.wpi.first.wpilibj.Victor;
@@ -11,8 +10,8 @@ import edu.wpi.first.wpilibj.Victor;
  * Capable of running a timed sequence.
  * Work in Progress.
  * 
- * @version 0.1
- * @author Liam
+ * @version 0.1.1
+ * @author Liam Williams
  */
 public class VictorController {
 	SerialController log = new SerialController("MXP");
