@@ -5,7 +5,7 @@ import java.util.List;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
- * Controls Victor 888 and 884 motor controllers.
+ * Controls Victor 888, 884, and SPARK motor controllers.
  * Capable of slaving together multiple motors to be controlled all at once.
  * Capable of running a timed sequence.
  * Work in Progress.
@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.Victor;
  * @version 0.1.1
  * @author Liam Williams
  */
-public class VictorController {
+public class MotorController {
 	SerialController log = new SerialController("MXP");
 	List<Integer> ports = new ArrayList<Integer>();
 	List<Victor> motorArray;
 	Victor motor;
 	
 	/**
-	 * Initializes a Victor controller on a given port.
+	 * Initializes a Victor or SPARK controller on a given port.
 	 * @param port PWM port containing the Victor.
 	 */
-	public VictorController(int port) {
+	public MotorController(int port) {
 		motorArray = new ArrayList<Victor>();
 		motorArray.add(motor = new Victor(port));
 		log.send("Initialized motor on port " + port);
@@ -31,7 +31,7 @@ public class VictorController {
 	}
 	
 	/**
-	 * Slaves an additional (initialized by this method) Victor to the current
+	 * Slaves an additional (initialized by this method) Victor or SPARK to the current
 	 * motorset contained in this object.
 	 * @param port PWN port containing the Victor.
 	 * @param reversed If the motor direction needs to be reversed.
