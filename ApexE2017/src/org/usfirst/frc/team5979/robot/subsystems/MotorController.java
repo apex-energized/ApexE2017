@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Victor;
  * Capable of running a timed sequence.
  * Work in Progress.
  * 
- * @version 0.1.2
+ * @version 0.1.3
  * @author Liam Williams
  */
 public class MotorController {
