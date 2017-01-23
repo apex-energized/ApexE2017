@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5979.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
@@ -7,12 +8,46 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * a ready-to-read format.
  * 
  * Currently only supports onboard PDP sensors.
- * @version 1.0
+ * @version 1.1
  * @author Liam Williams
  */
 public class SensorNet {
 
-	public SensorNet() {
+	/**
+	 * Inner class specializing in supporting sensors without SensorNet support.
+	 */
+	class unsigned extends sensorBase {
+		AnalogInput input;
+		double rawData;
+		double data = 0;
+		public unsigned(int port) {
+			input = new AnalogInput(port);
+		}
+		
+		/**
+		 * unsigned sensor type does not know how to process data in a readable
+		 * form, so the output will always be 0.
+		 * @return 0
+		 */
+		public double getData() {
+			return 0;
+		}
+		
+		/**
+		 * Gets the raw data from the port.
+		 * @return Raw analog data from sensor.
+		 */
+		public double getRaw() {
+			refresh();
+			return rawData;
+		}
+		
+		/**
+		 * Refreshes the stored value from the sensor.
+		 */
+		protected void refresh() {
+			rawData = input.getValue();
+		}
 	}
 
 	/**
@@ -116,4 +151,17 @@ public class SensorNet {
 			return current;
 		}
 	}
+}
+
+/**
+ * Interface defining basic methods that should be common among all
+ * sensor handlers.
+ * 
+ * @version 1.0
+ * @author Liam Williams
+ */
+abstract class sensorBase {
+	public abstract double getData();
+	public abstract double getRaw();
+	protected abstract void refresh();
 }
