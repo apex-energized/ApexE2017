@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5979.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
@@ -8,11 +9,11 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * a ready-to-read format.
  * 
  * Currently only supports onboard PDP sensors.
- * @version 1.1
+ * @version 1.2
  * @author Liam Williams
  */
 public class SensorNet {
-
+	
 	/**
 	 * Inner class specializing in supporting sensors without SensorNet support.
 	 */
@@ -48,6 +49,33 @@ public class SensorNet {
 		protected void refresh() {
 			rawData = input.getValue();
 		}
+	}
+
+	/**
+	 * Inner class for handling buttons or any other digital inputs.
+	 */
+	class button {
+		DigitalInput input;
+		boolean state;
+		public button(int port) {
+			input = new DigitalInput(port);
+		}
+		
+		/**
+		 * @return Returns the state of the button or other figital input.
+		 */
+		public boolean getData() {
+			refresh();
+			return state;
+		}
+
+		/**
+		 * Refreshes the stored values of the digital input.
+		 */
+		protected void refresh() {
+			state = input.get();
+		}
+		
 	}
 
 	/**
