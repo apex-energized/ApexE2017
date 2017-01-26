@@ -17,7 +17,7 @@ public class Dashboard {
 	 * Inner class that will handle PDP readings sent to the dashboard
 	 * without any flexibility.
 	 */
-	class pdpDefault {
+	public class pdpDefault {
 		SensorNet s;
 		SensorNet.PDP pdp;
 		public pdpDefault() {
