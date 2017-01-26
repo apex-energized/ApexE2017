@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 /**
  * Initializes the default USB camera and enables it for basic streaming to
  * the dashboard.
- * @version 1.0
+ * @version 1.1
  * @author Liam Williams
  */
 public class CameraController {
@@ -17,15 +17,16 @@ public class CameraController {
 	 * Initializes the camera with default settings.
 	 */
 	public void init() {
-		camera.setQuality(50);
+		//camera.setQuality(50);
 		camera.startAutomaticCapture();
 	}
 	/**
 	 * Initializes the camera with custom quality.
 	 * @param quality Camera quality to be selected.
+	 * @deprecated
 	 */
 	public void init(int quality) {
-		camera.setQuality(quality);
+		//camera.setQuality(quality);
 		camera.startAutomaticCapture();
 	}
 }
