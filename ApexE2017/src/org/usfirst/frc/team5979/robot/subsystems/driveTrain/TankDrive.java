@@ -40,7 +40,7 @@ public class TankDrive extends DriveTrain {
 	 * @param stickR Right side control speed.
 	 */
 	public void tank(double stickL, double stickR) {
-		tankDrive.tankDrive(stickL, stickR);
+		tankDrive.tankDrive(-stickL, -stickR);
 	}
 	/**
 	 * Drives at a given speed and curvature for a given time.

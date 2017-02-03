@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5979.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5979.robot.subsystems.*;
 import org.usfirst.frc.team5979.robot.subsystems.dashboard.DashboardDataSender;
+import org.usfirst.frc.team5979.robot.subsystems.driveTrain.TankDrive;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     CameraController cam;
+    TankDrive tank;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         cam = new CameraController();
         cam.init();
+        tank = new TankDrive(0, 1, 3, 4);
     }
 	
 	/**
@@ -65,21 +68,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        tank.autoDrive(1, 0, 100000);
     }
 
     /**
@@ -102,6 +91,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        tank.tank(oi.getlYAxis(), oi.getrYAxis());
     }
     
     /**

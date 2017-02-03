@@ -36,23 +36,48 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	// declaration for stick axes
+	double lXAxis,lYAxis,rYAxis,rXAxis;
+	// declaration for buttons
+	boolean aButton;
 	Joystick stick;
 	public OI(){
 		stick = new Joystick(0);
-		
-	// declaration for stick axes
-		double lXAxis,lYAxis,rYAxis,rXAxis;
-	lXAxis = stick.getRawAxis(0);
-	lYAxis = stick.getRawAxis(1);
-	rXAxis = stick.getRawAxis(4);
-	rYAxis = stick.getRawAxis(5);
-	
-	// declaration for buttons
-	boolean aButton;
-		
-	aButton = stick.getRawButton(0);
-	
+		refresh();
 	}
-
+	
+	private void refresh() {
+		lXAxis = stick.getRawAxis(0);
+		lYAxis = stick.getRawAxis(1);
+		rXAxis = stick.getRawAxis(4);
+		rYAxis = stick.getRawAxis(5);
+		aButton = stick.getRawButton(1);
+	}
+	
+	public double getlXAxis() {
+		refresh();
+		return lXAxis;
+	}
+	
+	public double getlYAxis() {
+		refresh();
+		return lYAxis;
+	}
+	
+	public double getrXAxis() {
+		refresh();
+		return rXAxis;
+	}
+	
+	public double getrYAxis() {
+		refresh();
+		return rYAxis;
+	}
+	
+	public boolean getaButton() {
+		refresh();
+		return aButton;
+	}
 }
 
