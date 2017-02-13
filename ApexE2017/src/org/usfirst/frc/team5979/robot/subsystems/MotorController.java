@@ -62,7 +62,7 @@ public class MotorController {
 	 */
 	public void autoSequence(double speed, long time) {
 		long clock = System.currentTimeMillis(), 
-				duration = (System.currentTimeMillis()) + Long.valueOf(8000);
+				duration = (System.currentTimeMillis()) + Long.valueOf(time);
 		
 		log.send("Automatic motor sequence started for " + time + " milliseconds.");
 		for(int i = 0; i < (motorArray.size() - 1); i++) {

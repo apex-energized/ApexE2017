@@ -49,7 +49,7 @@ public class ArcadeDrive extends DriveTrain {
 	 */
 	public void autoDrive(double speed, double turnRate, long time) {
 		long clock = System.currentTimeMillis(), 
-				duration = (System.currentTimeMillis()) + Long.valueOf(8000);
+				duration = (System.currentTimeMillis()) + Long.valueOf(time);
 		
 		log.send("Automatic drive sequence started for " + time + " milliseconds.");
 		while(clock < duration) {
