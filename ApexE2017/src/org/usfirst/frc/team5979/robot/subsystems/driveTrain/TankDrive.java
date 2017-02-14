@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * Handles tank-style controls for the drive train. Can be run
  * in two-motor or four-motor configuration.
  * 
- * @version 0.1
+ * @version 1.0
  * @author Liam Williams
  */
 public class TankDrive extends DriveTrain {
@@ -44,17 +44,17 @@ public class TankDrive extends DriveTrain {
 	}
 	/**
 	 * Drives at a given speed and curvature for a given time.
-	 * @param speed Speed between -1 and 1 to drive at. 1 is full forward, -1 is full backward, 0 is neutral.
-	 * @param turnRate Rate of turn between -1 and 1. 1 is full right, -1 is full left, 0 is straight.
+	 * @param left Left side speed.
+	 * @param right Right side speed.
 	 * @param time Time (in milliseconds) for the robot to drive. Must be a long format variable.
 	 */
-	public void autoDrive(double speed, double turnRate, long time) {
+	public void autoDrive(double left, double right, long time) {
 		long clock = System.currentTimeMillis(), 
 				duration = (System.currentTimeMillis()) + Long.valueOf(time);
 		
 		log.send("Automatic drive sequence started for " + time + " milliseconds.");
 		while(clock < duration) {
-			tankDrive.drive(speed, turnRate);
+			tankDrive.tankDrive(left, right);
 			clock = System.currentTimeMillis();
 		}
 		log.send("Automatic drive sequence time expired.");

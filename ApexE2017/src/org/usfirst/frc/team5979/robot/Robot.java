@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5979.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5979.robot.subsystems.*;
 import org.usfirst.frc.team5979.robot.subsystems.dashboard.DashboardDataSender;
-import org.usfirst.frc.team5979.robot.subsystems.driveTrain.TankDrive;
+import org.usfirst.frc.team5979.robot.subsystems.driveTrain.*;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     CameraController cam;
-    TankDrive tank;
+    TankDrive dTrain;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         cam = new CameraController();
         cam.init();
-        tank = new TankDrive(0, 1, 3, 4);
+        dTrain = new TankDrive(0, 1, 3, 4);
     }
 	
 	/**
@@ -68,7 +68,6 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        tank.autoDrive(1, 0, 100000);
     }
 
     /**
@@ -76,6 +75,16 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        synchronized(this) {
+        	dTrain.autoDrive(2, 0, 1000);
+        }
+        synchronized(this) {
+        	dTrain.autoDrive(0.1, 1, 1000);
+        }
+       
+        synchronized(this) {
+        	dTrain.autoDrive(-.5, 0, 10000);
+        }
     }
 
     public void teleopInit() {
@@ -91,7 +100,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        tank.tank(oi.getlYAxis(), oi.getrYAxis());
+        dTrain.tank(oi.getlYAxis(), oi.getrYAxis());
     }
     
     /**
