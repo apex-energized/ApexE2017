@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * Handles arcade-style controls for the drive train. Can be run
  * in two-motor or four-motor configuration.
  * 
- * @version 0.1
+ * @version 0.2
  * @author Liam Williams
  */
 public class ArcadeDrive extends DriveTrain {
@@ -53,7 +53,7 @@ public class ArcadeDrive extends DriveTrain {
 		
 		log.send("Automatic drive sequence started for " + time + " milliseconds.");
 		while(clock < duration) {
-			arcadeDrive.drive(speed, turnRate);
+			arcadeDrive.arcadeDrive(speed, turnRate);
 			clock = System.currentTimeMillis();
 		}
 		log.send("Automatic drive sequence time expired.");
