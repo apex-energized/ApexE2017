@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     CameraController cam;
     TankDrive dTrain;
-    MotorController climber;
+    TankDrive climber;
     Aggregator agg;
 
     /**
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
         cam = new CameraController();
         cam.init();
         dTrain = new TankDrive(0, 1, 3, 4);
-        climber = new MotorController(6);
+        climber = new TankDrive(6, 7);
         agg = new Aggregator();
     }
 	
@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         dTrain.tank(oi.getlYAxis(), oi.getrYAxis());
-        climber.setSpeed(agg.combineSpeed(oi.getlTAxis(), oi.getrTAxis()));
+        climber.tank(agg.combineSpeed(oi.getlTAxis(), oi.getrTAxis()), 0);
     }
     
     /**
