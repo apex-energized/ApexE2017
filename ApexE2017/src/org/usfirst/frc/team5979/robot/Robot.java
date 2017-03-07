@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         cam = new CameraController();
         cam.init();
-        dTrain = new TankDrive(0, 1, 3, 4);
+        dTrain = new TankDrive(3, 4, 0, 1);
         climber = new TankDrive(6, 7);
         agg = new Aggregator();
     }
