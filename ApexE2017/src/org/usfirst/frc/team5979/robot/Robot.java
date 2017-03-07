@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This is the primary robot class for controlling the robot and is automatically run
- * by the RoboRIO's VM
+ * by the RoboRIO's VM.
  * 
  * @author Liam Williams
  */
