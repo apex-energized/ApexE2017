@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
         	dTrain.autoDrive(2, 0, 1000);
         }
         synchronized(this) {
-        	dTrain.autoDrive(0.1, 1, 1000);
+        	dTrain.autoDrive(0.1, 1, 8000);
         }
        
         synchronized(this) {
