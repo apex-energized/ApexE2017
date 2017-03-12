@@ -23,6 +23,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public SerialController log = new SerialController();
+	private boolean done = false;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -79,15 +80,13 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        if (!done) {
         synchronized(this) {
-        	dTrain.autoDrive(2, 0, 1000);
+        	dTrain.autoDrive(.8, .8, 4500);
         }
         synchronized(this) {
-        	dTrain.autoDrive(0.1, 1, 8000);
+        	done = true;
         }
-       
-        synchronized(this) {
-        	dTrain.autoDrive(-.5, 0, 10000);
         }
     }
 
