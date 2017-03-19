@@ -19,7 +19,6 @@ public class TankDrive extends DriveTrain {
 	 */
 	public TankDrive(int motorL, int motorR) {
 		tankDrive = new RobotDrive(motorL, motorR);
-		log.send("Two-motor tank drive initialized.");
 	}
 	
 	/**
@@ -31,7 +30,6 @@ public class TankDrive extends DriveTrain {
 	 */
 	public TankDrive(int motorFL, int motorBL, int motorFR, int motorBR) {
 		tankDrive = new RobotDrive(motorFL, motorBL, motorFR, motorBR);
-		log.send("Four-motor tank drive initialized.");
 	}
 	/**
 	 * Sets the motor speeds according to two values of -1 to 1 with 0 as a neutral point.]
@@ -52,11 +50,11 @@ public class TankDrive extends DriveTrain {
 		long clock = System.currentTimeMillis(), 
 				duration = (System.currentTimeMillis()) + Long.valueOf(time);
 		
-		log.send("Automatic drive sequence started for " + time + " milliseconds.");
+		//log.send("Automatic drive sequence started for " + time + " milliseconds.");
 		while(clock < duration) {
 			tankDrive.tankDrive(left, right);
 			clock = System.currentTimeMillis();
 		}
-		log.send("Automatic drive sequence time expired.");
+		//log.send("Automatic drive sequence time expired.");
 	}
 }

@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public SerialController log = new SerialController();
 	private boolean done = false;
 
     Command autonomousCommand;
@@ -44,7 +43,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         cam = new CameraController();
         cam.init();
-        dTrain = new TankDrive(3, 4, 0, 1);
+        dTrain = new TankDrive(2, 4, 0, 1);
         climber = new TankDrive(6, 7);
         agg = new Aggregator();
     }
@@ -55,8 +54,6 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-    	log.send("Disengaging.");
-    	log.clear();
     }
 	
 	public void disabledPeriodic() {
@@ -82,7 +79,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         if (!done) {
         synchronized(this) {
-        	dTrain.autoDrive(.8, .8, 4500);
+        	dTrain.autoDrive(.95, 1, 2500);
         }
         synchronized(this) {
         	done = true;
